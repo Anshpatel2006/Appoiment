@@ -1,10 +1,29 @@
+/**
+ * Providers.jsx
+ * 
+ * Screen for browsing and filtering healthcare providers.
+ * - Pulls provider data and helpers from app context
+ * - Lets users filter by search text, type, location, min rating, and price range
+ * - Navigates to a booking screen when a provider is selected
+ */
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
+import useRevealOnScroll from '../hooks/useRevealOnScroll'
 
+/**
+ * Providers
+ * 
+ * Renders filter controls and a grid of provider cards based on active filters.
+ */
 const Providers = () => {
+  // Pull provider list, currency formatting helper, and other shared data from context
   const { providers, formatPrice, indianCities } = useApp()
+  // Router navigation for moving to the booking page
   const navigate = useNavigate()
+  // Attach reveal-on-scroll animation to cards
+  useRevealOnScroll()
+  // UI state for all filter inputs (controlled form)
   const [filters, setFilters] = useState({
     type: '',
     location: '',
@@ -13,11 +32,14 @@ const Providers = () => {
     search: ''
   })
 
-  // Get unique values for filter options
+  // Derived lists for dropdown options
   const uniqueTypes = [...new Set(providers.map(p => p.type))]
   const uniqueLocations = [...new Set(providers.map(p => p.location))]
   const priceRanges = ['₹', '₹₹', '₹₹₹']
 
+  /**
+   * Update a single filter field in state.
+   */
   const handleFilterChange = (filterType, value) => {
     setFilters(prev => ({
       ...prev,
@@ -25,6 +47,9 @@ const Providers = () => {
     }))
   }
 
+  /**
+   * Reset all filters to their default (no filter) values.
+   */
   const clearFilters = () => {
     setFilters({
       type: '',
@@ -35,8 +60,9 @@ const Providers = () => {
     })
   }
 
-  // Filter providers based on selected filters
+  // Compute the providers that match the current set of filters.
   const filteredProviders = providers.filter(provider => {
+    // Individual boolean flags for each filter dimension
     const matchesType = !filters.type || provider.type === filters.type
     const matchesLocation = !filters.location || provider.location === filters.location
     const matchesRating = !filters.rating || provider.rating >= parseFloat(filters.rating)
@@ -50,28 +76,33 @@ const Providers = () => {
     return matchesType && matchesLocation && matchesRating && matchesPriceRange && matchesSearch
   })
 
+  /**
+   * Navigate to the booking page for the selected provider.
+   */
   const handleProviderSelect = (provider) => {
     navigate(`/booking/${provider.id}`)
   }
 
+  // Render
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Page Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">
+        <h1 className="section-title mb-2">
           Choose Healthcare Provider
         </h1>
-        <p className="text-gray-600">
+        <p className="section-subtitle">
           Find and book appointments with top-rated healthcare providers
         </p>
       </div>
 
-      {/* Filters Section */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      {/* Filters Section: search, type, location, min rating, price */}
+      <div className="card-base glass-card p-6 mb-8">
         <div className="flex flex-wrap items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-800">Filters</h2>
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Filters</h2>
           <button
             onClick={clearFilters}
-            className="text-red-600 hover:text-red-700 text-sm font-medium"
+            className="btn btn-ghost text-sm"
           >
             Clear All Filters
           </button>
@@ -80,7 +111,7 @@ const Providers = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {/* Search */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Search
             </label>
             <input
@@ -88,19 +119,19 @@ const Providers = () => {
               placeholder="Search providers or services..."
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
             />
           </div>
 
           {/* Type Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Type
             </label>
             <select
               value={filters.type}
               onChange={(e) => handleFilterChange('type', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
             >
               <option value="">All Types</option>
               {uniqueTypes.map(type => (
@@ -111,13 +142,13 @@ const Providers = () => {
 
           {/* Location Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Location
             </label>
             <select
               value={filters.location}
               onChange={(e) => handleFilterChange('location', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
             >
               <option value="">All Locations</option>
               {uniqueLocations.map(location => (
@@ -128,13 +159,13 @@ const Providers = () => {
 
           {/* Rating Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Min Rating
             </label>
             <select
               value={filters.rating}
               onChange={(e) => handleFilterChange('rating', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
             >
               <option value="">Any Rating</option>
               <option value="4.5">4.5+ Stars</option>
@@ -145,13 +176,13 @@ const Providers = () => {
 
           {/* Price Range Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Price Range
             </label>
             <select
               value={filters.priceRange}
               onChange={(e) => handleFilterChange('priceRange', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
             >
               <option value="">Any Price</option>
               {priceRanges.map(range => (
@@ -163,7 +194,7 @@ const Providers = () => {
           </div>
         </div>
 
-        {/* Active Filters Display */}
+        {/* Active Filters Display: show removable chips for each active filter */}
         {Object.values(filters).some(filter => filter) && (
           <div className="mt-4 pt-4 border-t border-gray-200">
             <div className="flex flex-wrap gap-2">
@@ -230,81 +261,85 @@ const Providers = () => {
 
       {/* Results Count */}
       <div className="mb-6">
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-300">
           Showing {filteredProviders.length} of {providers.length} providers
         </p>
       </div>
 
       {/* Providers Grid */}
       {filteredProviders.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-md p-8 text-center">
+        <div className="card-base p-8 text-center">
           <div className="text-6xl mb-4">🔍</div>
           <h3 className="text-lg font-medium text-gray-800 mb-2">No providers found</h3>
           <p className="text-gray-600 mb-4">Try adjusting your filters to see more results</p>
           <button
             onClick={clearFilters}
-            className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition"
+            className="btn btn-primary"
           >
             Clear Filters
           </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Render one card per provider */}
           {filteredProviders.map((provider) => (
             <div
               key={provider.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer transform hover:scale-105"
+              className="card-base overflow-hidden cursor-pointer transform hover:scale-[1.02] reveal-card dark:bg-gray-800"
               onClick={() => handleProviderSelect(provider)}
             >
               <div className="p-6">
                 <div className="flex items-center mb-4">
                   <span className="text-4xl mr-4">{provider.image}</span>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-800">
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                       {provider.name}
                     </h3>
-                    <p className="text-sm text-gray-600">{provider.type} • {provider.location}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">{provider.type} • {provider.location}</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-bold text-green-600">
+                    {/* Price shown using app-level currency formatter */}
+                    <div className="text-lg font-bold text-green-500">
                       {formatPrice(provider.price)}
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       {provider.priceRange}
                     </div>
                   </div>
                 </div>
                 
+                {/* Quality signal and availability summary */}
                 <div className="flex items-center mb-3">
                   <span className="text-yellow-500">⭐</span>
-                  <span className="text-sm text-gray-600 ml-1">
+                  <span className="text-sm text-gray-600 dark:text-gray-300 ml-1">
                     {provider.rating}/5
                   </span>
-                  <span className="text-gray-400 mx-2">•</span>
-                  <span className="text-sm text-gray-600">
+                  <span className="text-gray-400 dark:text-gray-500 mx-2">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">
                     {provider.availableDates.length} days available
                   </span>
                 </div>
                 
                 <div className="mb-4">
-                  <p className="text-sm text-gray-600 mb-2">Services:</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">Services:</p>
                   <div className="flex flex-wrap gap-1">
                     {provider.services.slice(0, 3).map((service, index) => (
                       <span
                         key={index}
-                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded"
+                        className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-2 py-1 rounded"
                       >
                         {service}
                       </span>
                     ))}
                     {provider.services.length > 3 && (
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
                         +{provider.services.length - 3} more
                       </span>
                     )}
                   </div>
                 </div>
                 
+                {/* Primary call-to-action */}
                 <button className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">
                   Book Appointment
                 </button>

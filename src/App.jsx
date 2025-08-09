@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AppProvider, useApp } from './context/AppContext'
 import Header from './components/Header'
@@ -10,9 +10,12 @@ import MyBookings from './components/MyBookings'
 import ProtectedRoute from './components/ProtectedRoute'
 import ProviderDashboard from './components/ProviderDashboard'
 import AdminDashboard from './components/AdminDashboard'
+import HealthInfo from './components/HealthInfo'
+import MentalHealth from './components/MentalHealth'
 
 function AppContent() {
   const { user, login } = useApp()
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
     // Check for saved user in localStorage
@@ -20,6 +23,12 @@ function AppContent() {
     if (savedUser) {
       login(JSON.parse(savedUser))
     }
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const shouldUseDark = savedTheme ? savedTheme === 'dark' : prefersDark
+    setIsDark(shouldUseDark)
+    document.documentElement.classList.toggle('dark', shouldUseDark)
   }, [login])
 
   const getDashboardPath = () => {
@@ -38,7 +47,7 @@ function AppContent() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="app-surface">
         <Header />
         
         <Routes>
@@ -46,6 +55,14 @@ function AppContent() {
           <Route 
             path="/" 
             element={<Home />} 
+          />
+          <Route 
+            path="/health-info" 
+            element={<HealthInfo />} 
+          />
+          <Route 
+            path="/mental-health" 
+            element={<MentalHealth />} 
           />
           
           <Route 

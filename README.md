@@ -1,4 +1,4 @@
-# 🏥 BookMyAppointment - Multi-Role Appointment Booking System
+# 🏥 QuickBooker - Multi-Role Appointment Booking System
 
 A comprehensive appointment booking system built for the Indian healthcare market, featuring role-based dashboards for customers, providers, and administrators.
 
@@ -214,7 +214,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Support
 
-For support, email support@bookmyappointment.com or create an issue in the repository.
+For support, email support@quickbooker.app or create an issue in the repository.
 
 ---
 

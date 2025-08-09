@@ -167,11 +167,11 @@ const AdminDashboard = () => {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
-          <p className="text-gray-600">Manage providers, bookings, and system overview</p>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Admin Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-300">Manage providers, bookings, and system overview</p>
         </div>
         <div className="flex items-center space-x-4">
-          <span className="text-sm text-gray-500">Welcome, Admin</span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">Welcome, Admin</span>
           <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-medium">
             A
           </div>
@@ -179,8 +179,8 @@ const AdminDashboard = () => {
       </div>
 
       {/* Tab Navigation */}
-      <div className="bg-white rounded-lg shadow-md mb-8">
-        <div className="border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md mb-8">
+        <div className="border-b border-gray-200 dark:border-gray-700">
           <nav className="flex space-x-8 px-6">
             {[
               { id: 'overview', label: 'Overview', icon: '📊' },
@@ -195,7 +195,7 @@ const AdminDashboard = () => {
                 className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                   activeTab === tab.id
                     ? 'border-red-500 text-red-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:border-gray-600'
                 }`}
               >
                 <span className="mr-2">{tab.icon}</span>
@@ -210,71 +210,71 @@ const AdminDashboard = () => {
           {activeTab === 'overview' && (
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="bg-blue-50 p-6 rounded-lg">
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg">
                   <div className="flex items-center">
-                    <div className="text-3xl text-blue-600 mr-4">🏥</div>
+                    <div className="text-3xl text-blue-600 dark:text-blue-400 mr-4">🏥</div>
                     <div>
-                      <p className="text-sm font-medium text-blue-600">Total Providers</p>
-                      <p className="text-2xl font-bold text-blue-800">{stats.totalProviders}</p>
+                      <p className="text-sm font-medium text-blue-600 dark:text-blue-300">Total Providers</p>
+                      <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">{stats.totalProviders}</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-green-50 p-6 rounded-lg">
+                <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg">
                   <div className="flex items-center">
-                    <div className="text-3xl text-green-600 mr-4">📅</div>
+                    <div className="text-3xl text-green-600 dark:text-green-400 mr-4">📅</div>
                     <div>
-                      <p className="text-sm font-medium text-green-600">Total Bookings</p>
-                      <p className="text-2xl font-bold text-green-800">{stats.totalBookings}</p>
+                      <p className="text-sm font-medium text-green-600 dark:text-green-300">Total Bookings</p>
+                      <p className="text-2xl font-bold text-green-800 dark:text-green-200">{stats.totalBookings}</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-yellow-50 p-6 rounded-lg">
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-lg">
                   <div className="flex items-center">
-                    <div className="text-3xl text-yellow-600 mr-4">✅</div>
+                    <div className="text-3xl text-yellow-600 dark:text-yellow-400 mr-4">✅</div>
                     <div>
-                      <p className="text-sm font-medium text-yellow-600">Confirmed</p>
-                      <p className="text-2xl font-bold text-yellow-800">{stats.confirmedBookings}</p>
+                      <p className="text-sm font-medium text-yellow-600 dark:text-yellow-300">Confirmed</p>
+                      <p className="text-2xl font-bold text-yellow-800 dark:text-yellow-200">{stats.confirmedBookings}</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-purple-50 p-6 rounded-lg">
+                <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg">
                   <div className="flex items-center">
-                    <div className="text-3xl text-purple-600 mr-4">💰</div>
+                    <div className="text-3xl text-purple-600 dark:text-purple-400 mr-4">💰</div>
                     <div>
-                      <p className="text-sm font-medium text-purple-600">Total Revenue</p>
-                      <p className="text-2xl font-bold text-purple-800">{formatPrice(stats.totalRevenue)}</p>
+                      <p className="text-sm font-medium text-purple-600 dark:text-purple-300">Total Revenue</p>
+                      <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">{formatPrice(stats.totalRevenue)}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Recent Bookings</h3>
+              <div className="bg-gray-50 dark:bg-gray-900/40 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">Recent Bookings</h3>
                 <div className="space-y-3">
                   {allBookings.slice(0, 5).map((booking, index) => {
                     const provider = allProviders.find(p => p.id === booking.providerId)
                     return (
-                      <div key={index} className="flex items-center justify-between bg-white p-3 rounded-lg">
+                      <div key={index} className="flex items-center justify-between bg-white dark:bg-gray-800 p-3 rounded-lg">
                         <div className="flex items-center">
                           <span className="text-2xl mr-3">{provider?.image || '🏥'}</span>
                           <div>
-                            <p className="font-medium text-gray-800">{provider?.name || 'Unknown Provider'}</p>
-                            <p className="text-sm text-gray-600">{booking.service} • {booking.date} at {booking.time}</p>
+                            <p className="font-medium text-gray-800 dark:text-gray-100">{provider?.name || 'Unknown Provider'}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-300">{booking.service} • {booking.date} at {booking.time}</p>
                           </div>
                         </div>
                         <div className="text-right">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            booking.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
-                            booking.status === 'Cancelled' ? 'bg-red-100 text-red-800' :
-                            'bg-gray-100 text-gray-800'
+                            booking.status === 'Confirmed' ? 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300' :
+                            booking.status === 'Cancelled' ? 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300' :
+                            'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
                           }`}>
                             {booking.status}
                           </span>
-                          <p className="text-sm text-gray-600 mt-1">{formatPrice(provider?.price || 0)}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{formatPrice(provider?.price || 0)}</p>
                         </div>
                       </div>
                     )
@@ -288,7 +288,7 @@ const AdminDashboard = () => {
           {activeTab === 'providers' && (
             <div>
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold text-gray-800">Manage Providers</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Manage Providers</h3>
                 <button
                   onClick={() => setShowAddProvider(true)}
                   className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
@@ -299,34 +299,34 @@ const AdminDashboard = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {allProviders.map(provider => (
-                  <div key={provider.id} className="bg-white border rounded-lg p-6">
+                  <div key={provider.id} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
                     <div className="flex items-center mb-4">
                       <span className="text-3xl mr-3">{provider.image}</span>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-gray-800">{provider.name}</h4>
-                        <p className="text-sm text-gray-600">{provider.type} • {provider.location}</p>
+                        <h4 className="font-semibold text-gray-800 dark:text-gray-100">{provider.name}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">{provider.type} • {provider.location}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-green-600">{formatPrice(provider.price)}</p>
-                        <p className="text-xs text-gray-500">{provider.priceRange}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{provider.priceRange}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center mb-3">
                       <span className="text-yellow-500">⭐</span>
-                      <span className="text-sm text-gray-600 ml-1">{provider.rating}/5</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 ml-1">{provider.rating}/5</span>
                     </div>
                     
                     <div className="mb-4">
-                      <p className="text-xs text-gray-500 mb-1">Services:</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Services:</p>
                       <div className="flex flex-wrap gap-1">
                         {provider.services.slice(0, 2).map((service, index) => (
-                          <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                          <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-2 py-1 rounded">
                             {service}
                           </span>
                         ))}
                         {provider.services.length > 2 && (
-                          <span className="text-xs text-gray-500">+{provider.services.length - 2} more</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">+{provider.services.length - 2} more</span>
                         )}
                       </div>
                     </div>
@@ -355,7 +355,7 @@ const AdminDashboard = () => {
           {activeTab === 'services' && (
             <div>
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold text-gray-800">Manage Services</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Manage Services</h3>
                 <button
                   onClick={() => setShowAddService(true)}
                   className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
@@ -366,16 +366,16 @@ const AdminDashboard = () => {
 
               <div className="space-y-6">
                 {Object.entries(availableServices).map(([providerType, services]) => (
-                  <div key={providerType} className="bg-white border rounded-lg p-6">
+                  <div key={providerType} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
                     <div className="flex justify-between items-center mb-4">
-                      <h4 className="text-lg font-semibold text-gray-800">{providerType} Services</h4>
-                      <span className="text-sm text-gray-500">{services.length} services</span>
+                      <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{providerType} Services</h4>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{services.length} services</span>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                       {services.map((service, index) => (
-                        <div key={index} className="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                          <span className="text-sm text-gray-800">{service}</span>
+                        <div key={index} className="flex items-center justify-between bg-gray-50 dark:bg-gray-900/40 p-3 rounded-lg">
+                          <span className="text-sm text-gray-800 dark:text-gray-200">{service}</span>
                           <button
                             onClick={() => handleRemoveService(providerType, service)}
                             className="text-red-600 hover:text-red-800 text-sm"
@@ -388,7 +388,7 @@ const AdminDashboard = () => {
                     </div>
                     
                     {services.length === 0 && (
-                      <p className="text-gray-500 text-center py-4">No services available for {providerType}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-center py-4">No services available for {providerType}</p>
                     )}
                   </div>
                 ))}
@@ -399,30 +399,30 @@ const AdminDashboard = () => {
           {/* Bookings Tab */}
           {activeTab === 'bookings' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-6">All Bookings</h3>
-              <div className="bg-white border rounded-lg overflow-hidden">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-6">All Bookings</h3>
+              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                  <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead className="bg-gray-50 dark:bg-gray-900">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                           Provider
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                           Service
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                           Date & Time
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                           Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                           Amount
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                       {allBookings.map((booking, index) => {
                         const provider = allProviders.find(p => p.id === booking.providerId)
                         return (
@@ -431,30 +431,30 @@ const AdminDashboard = () => {
                               <div className="flex items-center">
                                 <span className="text-2xl mr-3">{provider?.image || '🏥'}</span>
                                 <div>
-                                  <div className="text-sm font-medium text-gray-900">
+                                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                                     {provider?.name || 'Unknown Provider'}
                                   </div>
-                                  <div className="text-sm text-gray-500">{provider?.location}</div>
+                                  <div className="text-sm text-gray-500 dark:text-gray-400">{provider?.location}</div>
                                 </div>
                               </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                               {booking.service}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                               {booking.date}<br />
-                              <span className="text-gray-500">{booking.time}</span>
+                              <span className="text-gray-500 dark:text-gray-400">{booking.time}</span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                booking.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
-                                booking.status === 'Cancelled' ? 'bg-red-100 text-red-800' :
-                                'bg-gray-100 text-gray-800'
+                                booking.status === 'Confirmed' ? 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300' :
+                                booking.status === 'Cancelled' ? 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300' :
+                                'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
                               }`}>
                                 {booking.status}
                               </span>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                               {formatPrice(provider?.price || 0)}
                             </td>
                           </tr>
@@ -471,7 +471,7 @@ const AdminDashboard = () => {
           {activeTab === 'users' && (
             <div>
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold text-gray-800">System Users</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">System Users</h3>
                 <button
                   onClick={() => setShowAddUser(true)}
                   className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
@@ -481,7 +481,7 @@ const AdminDashboard = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {allUsers.map(user => (
-                  <div key={user.id} className="bg-white border rounded-lg p-6">
+                  <div key={user.id} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
                     <div className="flex items-center mb-4">
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-medium ${
                         user.role === 'admin' ? 'bg-red-600' :
@@ -491,25 +491,25 @@ const AdminDashboard = () => {
                         {user.name.charAt(0)}
                       </div>
                       <div className="ml-4">
-                        <h4 className="font-semibold text-gray-800">{user.name}</h4>
-                        <p className="text-sm text-gray-600">{user.email}</p>
+                        <h4 className="font-semibold text-gray-800 dark:text-gray-100">{user.name}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">{user.email}</p>
                       </div>
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Role:</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Role:</span>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          user.role === 'admin' ? 'bg-red-100 text-red-800' :
-                          user.role === 'provider' ? 'bg-blue-100 text-blue-800' :
-                          'bg-green-100 text-green-800'
+                          user.role === 'admin' ? 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300' :
+                          user.role === 'provider' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300' :
+                          'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300'
                         }`}>
                           {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-sm text-gray-500">Phone:</span>
-                        <span className="text-sm text-gray-800">{user.phone}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Phone:</span>
+                        <span className="text-sm text-gray-800 dark:text-gray-200">{user.phone}</span>
                       </div>
                     </div>
                   </div>
@@ -523,9 +523,9 @@ const AdminDashboard = () => {
       {/* Add/Edit Provider Modal */}
       {showAddProvider && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-screen overflow-y-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md max-h-screen overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                 {editingProvider ? 'Edit Provider' : 'Add New Provider'}
               </h3>
               <button
@@ -543,7 +543,7 @@ const AdminDashboard = () => {
                     price: 500
                   })
                 }}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-200"
               >
                 ✕
               </button>
@@ -551,22 +551,22 @@ const AdminDashboard = () => {
 
             <form onSubmit={editingProvider ? handleUpdateProvider : handleAddProvider} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name *</label>
                 <input
                   type="text"
                   value={newProvider.name}
                   onChange={(e) => setNewProvider({...newProvider, name: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Type *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type *</label>
                 <select
                   value={newProvider.type}
                   onChange={(e) => setNewProvider({...newProvider, type: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                 >
                   {providerTypes.map(type => (
                     <option key={type} value={type}>{type}</option>
@@ -575,11 +575,11 @@ const AdminDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Location *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Location *</label>
                 <select
                   value={newProvider.location}
                   onChange={(e) => setNewProvider({...newProvider, location: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   required
                 >
                   <option value="">Select City</option>
@@ -590,7 +590,7 @@ const AdminDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Rating</label>
                 <input
                   type="number"
                   min="1"
@@ -598,12 +598,12 @@ const AdminDashboard = () => {
                   step="0.1"
                   value={newProvider.rating}
                   onChange={(e) => setNewProvider({...newProvider, rating: parseFloat(e.target.value)})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Price Range</label>
                 <select
                   value={newProvider.priceRange}
                   onChange={(e) => {
@@ -614,7 +614,7 @@ const AdminDashboard = () => {
                       price: range ? range.minPrice : 500
                     })
                   }}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                 >
                   {priceRanges.map(range => (
                     <option key={range.symbol} value={range.symbol}>
@@ -625,23 +625,23 @@ const AdminDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Price (₹)</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Price (₹)</label>
                 <input
                   type="number"
                   min="100"
                   max="10000"
                   value={newProvider.price}
                   onChange={(e) => setNewProvider({...newProvider, price: parseInt(e.target.value)})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Services * (comma-separated)</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Services * (comma-separated)</label>
                 <textarea
                   value={newProvider.services}
                   onChange={(e) => setNewProvider({...newProvider, services: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   rows="3"
                   placeholder="e.g., General Consultation, Cardiology, X-Ray"
                   required
@@ -661,7 +661,7 @@ const AdminDashboard = () => {
                     setShowAddProvider(false)
                     setEditingProvider(null)
                   }}
-                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition"
+                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                 >
                   Cancel
                 </button>
@@ -674,12 +674,12 @@ const AdminDashboard = () => {
       {/* Add Service Modal */}
       {showAddService && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Add New Service</h3>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Add New Service</h3>
               <button
                 onClick={() => setShowAddService(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-200"
               >
                 ✕
               </button>
@@ -687,11 +687,11 @@ const AdminDashboard = () => {
 
             <form onSubmit={handleAddService} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Provider Type *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Provider Type *</label>
                 <select
                   value={newService.type}
                   onChange={(e) => setNewService({...newService, type: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                 >
                   {Object.keys(availableServices).map(type => (
                     <option key={type} value={type}>{type}</option>
@@ -700,12 +700,12 @@ const AdminDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Service Name *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Service Name *</label>
                 <input
                   type="text"
                   value={newService.name}
                   onChange={(e) => setNewService({...newService, name: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   placeholder="Enter service name"
                   required
                 />
@@ -721,7 +721,7 @@ const AdminDashboard = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddService(false)}
-                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition"
+                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                 >
                   Cancel
                 </button>
@@ -734,12 +734,12 @@ const AdminDashboard = () => {
       {/* Add User Modal */}
       {showAddUser && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Add New User</h3>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Add New User</h3>
               <button
                 onClick={() => setShowAddUser(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-200"
               >
                 ✕
               </button>
@@ -747,46 +747,46 @@ const AdminDashboard = () => {
 
             <form onSubmit={handleAddUser} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name *</label>
                 <input
                   type="text"
                   value={newUser.name}
                   onChange={(e) => setNewUser({...newUser, name: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   placeholder="Enter full name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email *</label>
                 <input
                   type="email"
                   value={newUser.email}
                   onChange={(e) => setNewUser({...newUser, email: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   placeholder="Enter email address"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
                 <input
                   type="tel"
                   value={newUser.phone}
                   onChange={(e) => setNewUser({...newUser, phone: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                   placeholder="+91-XXXXX-XXXXX"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Role *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Role *</label>
                 <select
                   value={newUser.role}
                   onChange={(e) => setNewUser({...newUser, role: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-800 dark:text-gray-100"
                 >
                   <option value="customer">Customer</option>
                   <option value="provider">Provider</option>
@@ -794,8 +794,8 @@ const AdminDashboard = () => {
                 </select>
               </div>
 
-              <div className="bg-blue-50 p-3 rounded-md">
-                <p className="text-xs text-blue-600">
+              <div className="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-md">
+                <p className="text-xs text-blue-600 dark:text-blue-300">
                   Default password will be set to "password". User can change it later.
                 </p>
               </div>
@@ -810,7 +810,7 @@ const AdminDashboard = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddUser(false)}
-                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition"
+                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                 >
                   Cancel
                 </button>
